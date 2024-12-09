@@ -1,0 +1,321 @@
+/* Pantalla principal */
+.info-screen {
+    height: 100vh;
+    width: 100vw;
+    font-family: Outfit, sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 4000px rgba(0, 0, 0, 0.723);
+    box-shadow: inset 0 0 0 4000px rgba(0, 0, 0, 0.723);
+    background-image: url('/imagenes/background.jpg');
+}
+
+
+/* Contenedor principal */
+.info-content-div {
+    background-color: #1F1F1F;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Encabezado del contacto */
+.info-del-contact {
+    display: flex;
+    background-color: #2C2C2C;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.contacto-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contacto-info h2 {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.contacto-info p {
+    font-size: 16px;
+    color: #B3B3B3;
+}
+
+.back-icon {
+    font-size: 28px;
+    color: #1CBB4A;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    align-self: flex-start;
+
+}
+
+.back-icon:hover {
+    color: #1CBB4A;
+    transform: scale(1.1);
+}
+
+.profile-info {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1CBB4A;
+}
+
+/* Detalles del contacto */
+.contacto-detalles {
+    background-color: #2C2C2C;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detalle {
+    font-size: 16px;
+    color: #B3B3B3;
+}
+
+.detalle span {
+    color: #ffffff;
+}
+
+.options-infoscreen {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.icon-container-info {
+    background-color: #5f5c5cb0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 5px rgba(75, 75, 75, 0.34);
+}
+
+.icon-container-info p {
+    font-size: 12px;
+    margin-left: 5px;
+    color: white;
+}
+
+.icon-container-info:hover {
+    background-color: #1CBB4A;
+}
+
+.opciones-icons-info {
+    font-size: 20px;
+}
+
+.button-info-screen {
+    background-color: #5d5f5cb0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 5px rgba(75, 75, 75, 0.34);
+}
+
+.button-info-screen p {
+    font-size: 12px;
+    margin-left: 5px;
+    color: white;
+}
+
+.button-info-screen .icons-info-screen {
+    font-size: 15px;
+}
+
+.button-info-screen:hover {
+    background-color: #1CBB4A;
+
+}
+
+.notification-slip .notification-subtitle {
+    color: #ffffff;
+}
+
+.buttons-bloqued {
+    border-top: 1px solid grey;
+    padding: 10px;
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.options-bloqued {
+    background-color: #5f5c5cb0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-left: -5px;
+}
+
+.options-bloqued:hover {
+    background-color: red;
+}
+
+/* Media Queries */
+@media screen and (min-width: 500px) and (max-width: 720px) {
+    .info-content-div {
+        height: 100%;
+        width: 50%;
+    }
+
+    .contacto-info .profile-info {
+        width: 35px;
+        height: 35px;
+    }
+
+    .contacto-info h2 {
+        font-size: 15px;
+    }
+
+    .contacto-info p {
+        font-size: 10px;
+    }
+
+    .options-infoscreen {
+        width: 10px;
+        height: 10px;
+        gap: 2px;
+    }
+
+}
+
+@media screen and (min-width: 400px) and (max-width: 500px) {
+    .info-content-div {
+        position: absolute;
+        right: 20px;
+    }
+
+    .contacto-info .profile-info {
+        width: 35px;
+        height: 35px;
+    }
+
+    .contacto-info h2 {
+        font-size: 15px;
+    }
+
+    .contacto-info p {
+        font-size: 10px;
+    }
+
+    .options-infoscreen {
+        width: 10px;
+        height: 10px;
+        gap: 2px;
+    }
+
+    .options-infoscreen .icon-container-info {
+        color: white;
+        padding: 10px;
+    }
+
+    .contacto-detalles {
+        padding: 10px;
+        gap: 0;
+    }
+
+    .detalle span {
+        font-size: 10px;
+    }
+
+    .detalle p {
+        font-size: 10px;
+    }
+
+    .notification-slip {
+        display: none;
+    }
+
+    .buttons-bloqued .options-bloqued {
+        padding: 5px
+    }
+
+}
+
+@media screen and (min-width: 280px) and (max-width: 400px) {
+
+    .info-screen .info-content-div {
+        margin: 30px;
+        margin-left: 50px;
+    }
+
+    .contacto-info .profile-info {
+        width: 35px;
+        height: 35px;
+    }
+
+    .contacto-info h2 {
+        font-size: 15px;
+    }
+
+    .contacto-info p {
+        font-size: 10px;
+    }
+
+    .options-infoscreen {
+        width: 10px;
+        height: 10px;
+        gap: 2px;
+    }
+
+    .options-infoscreen .icon-container-info {
+        color: white;
+        padding: 10px;
+    }
+
+    .contacto-detalles {
+        padding: 10px;
+        gap: 0;
+    }
+
+    .detalle span {
+        font-size: 10px;
+    }
+
+    .detalle p {
+        font-size: 10px;
+    }
+
+    .notification-slip {
+        display: none;
+    }
+
+    .buttons-bloqued .options-bloqued {
+        padding: 5px
+    }
+
+}

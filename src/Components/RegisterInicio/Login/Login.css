@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+.login-container {
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    box-shadow: inset 0 0 0 4000px rgba(0, 0, 0, 0.723);
+    background-image: url('/imagenes/background.jpg');
+}
+
+.login-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.indication-login-container {
+    width: 50%;
+}
+
+.login-form {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.login-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: rgb(21, 105, 87);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.login-label {
+    margin-bottom: 0.5rem;
+}
+
+.login-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-button {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgb(0, 168, 132);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background: #3add79;
+    color: rgb(51, 50, 50);
+}
+
+.error {
+    color: red;
+    margin-top: 1rem;
+}
+
+.forgot-password-link {
+    margin-top: 1rem;
+    color: #4facfe;
+    text-decoration: underline;
+}
+
+.forgot-password-link:hover {
+    text-decoration: none;
+}
+
+.register-div {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+
+}
+
+.register-link {
+    color: #4facfe;
+    text-decoration: underline;
+}
+
+.register-link:hover {
+    text-decoration: none;
+}
+
+
+
+@media (max-width: 1440px) {
+    .login-content {
+        padding: 2rem;
+        width: 80%;
+    }
+}
+
+@media (max-width: 1366px) {
+    .login-content {
+        padding: 2rem;
+        width: 80%;
+    }
+}
+
+@media (max-width: 1280px) {
+    .login-content {
+        padding: 2rem;
+        width: 85%;
+    }
+}
+
+@media screen and (min-width: 720px) and (max-width: 1280px) {
+    .login-container {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .login-content {
+        padding: 1.5rem;
+        width: 90%;
+        margin: 15px;
+    }
+
+    .login-form {
+        margin: 0;
+        width: 100%;
+    }
+
+    .login-title {
+        font-size: 1.75rem;
+    }
+}
+
+
+
+@media screen and (min-width: 501px) and (max-width: 720px) {
+    .login-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .login-content {
+        margin: 15px;
+        padding: 0.75rem;
+        width: 95%;
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (min-width: 400px) and (max-width: 500px) {
+    .login-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .login-content {
+        margin: 15px;
+        padding: 0.75rem;
+        width: 95%;
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 230px) and (max-width: 400px) {
+    .login-container {
+        height: 100%;
+        width: 100%;
+    }
+
+    .login-content {
+        margin: 15px;
+        padding: 0.75rem;
+        width: 95%;
+        flex-direction: column;
+    }
+
+    .login-title {
+        font-size: 1.5rem;
+    }
+
+    .login-button {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .form-group {
+        margin-bottom: 0.5rem;
+    }
+
+    .login-input {
+        padding: 0.1rem;
+        font-size: 0.8rem;
+    }
+
+    .error {
+        font-size: 0.8rem;
+    }
+
+    .register-div {
+        flex-direction: column;
+
+    }
+
+    .register-link {
+        color: #4facfe;
+        text-decoration: underline;
+        font-size: 15px;
+    }
+}

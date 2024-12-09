@@ -1,0 +1,395 @@
+[
+    {
+        "nombre": "Homero Simpson",
+        "thumbnail": "homer.jpg",
+        "ultima_conexion": "Ayer",
+        "id": 1,
+        "mensajes": [
+            {
+                "author": "Homero Simpson",
+                "text": "Por favor, no me coma señor extraterrestre, tengo una esposa y tres hijos..., cómaselos a ellos",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "11:40",
+                "id": "1"
+            },
+            {
+                "author": "yo",
+                "text": "Besemonos para romper la tension",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "11:43",
+                "id": "2"
+            },
+            {
+                "author": "Homero Simpson",
+                "text": "¡Ay, no, no, no... si no lo veo no es ilegal!",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "11:45",
+                "id": "3"
+            },
+            {
+                "author": "yo",
+                "text": "Ya Homero deja eso",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "13:10",
+                "id": "4"
+            },
+            {
+                "author": "Homero Simpson",
+                "text": "Operadora, deme el numero para el 911",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "13:13",
+                "id": "5"
+            },
+            {
+                "author": "yo",
+                "text": "Ay, creo que mi daño se cerebró!...",
+                "status": "Entregado",
+                "day": "Hoy",
+                "hour": "13:18",
+                "id": "6"
+            }
+        ]
+    },
+    {
+        "nombre": "Marge Bouvier",
+        "thumbnail": "marge.jpg",
+        "ultima_conexion": "Ayer",
+        "id": 2,
+        "mensajes": [
+            {
+                "author": "Marge Bouvier",
+                "text": "¡Bart Simpson, deja de molestar a Satanás!",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "14:00",
+                "id": "1"
+            },
+            {
+                "author": "yo",
+                "text": "¡Ay, caramba!",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "14:05",
+                "id": "2"
+            },
+            {
+                "author": "Marge Bouvier",
+                "text": "No podras escapar jovencito me paso las 23 horas del dia en esta casa",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "14:10",
+                "id": "3"
+            },
+            {
+                "author": "yo",
+                "text": "Quizas si, quizas no",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "14:15",
+                "id": "4"
+            },
+            {
+                "author": "Marge Bouvier",
+                "text": "¡Es hora de que Marge se luzca!",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "14:17",
+                "id": "5"
+            },
+            {
+                "author": "yo",
+                "text": "Es tu momento Marge, haz lo tuyo",
+                "status": "Entregado",
+                "day": "Hoy",
+                "hour": "14:20",
+                "id": "6"
+            }
+        ]
+    },
+    {
+        "nombre": "Ned Flanders",
+        "thumbnail": "flanders.jpg",
+        "ultima_conexion": "Hoy",
+        "id": 3,
+        "mensajes": [
+            {
+                "author": "Ned Flanders",
+                "text": "NOOOO! Han descubierto mi secretillo",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "15:10",
+                "id": "1"
+            },
+            {
+                "author": "yo",
+                "text": "Descuida Flanders tu secreto estara a salvo conmigo",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "15:05",
+                "id": "2"
+            },
+            {
+                "author": "Ned Flanders",
+                "text": "No lo se parece falso",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "15:10",
+                "id": "3"
+            },
+            {
+                "author": "yo",
+                "text": "Vamos Flanders tu puedes",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "15:23",
+                "id": "4"
+            },
+            {
+                "author": "Ned Flanders",
+                "text": "He hecho todo lo que dice la Biblia, hasta esas cosas que contradicen a las otras cosas",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "15:27",
+                "id": "5"
+            },
+            {
+                "author": "yo",
+                "text": "Dale, dale, dale",
+                "status": "Entregado",
+                "day": "Hoy",
+                "hour": "15:30",
+                "id": "6"
+            }
+        ]
+    },
+    {
+        "nombre": "Bart Simpson",
+        "thumbnail": "bart.jpg",
+        "ultima_conexion": "Hoy",
+        "id": 4,
+        "mensajes": [
+            {
+                "author": "Bart Simpson",
+                "text": "Yo no fui, nadie me vio, no pueden probarlo",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "17:00",
+                "id": "1"
+            },
+            {
+                "author": "yo",
+                "text": "Y que dices de MilHouse?",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "17:05",
+                "id": "2"
+            },
+            {
+                "author": "Bart Simpson",
+                "text": "Maldito Milhouse",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "17:10",
+                "id": "3"
+            },
+            {
+                "author": "yo",
+                "text": "¡Besa mi trasero amarillo!",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "17:20",
+                "id": "4"
+            },
+            {
+                "author": "Bart Simpson",
+                "text": "Y tu besa mis pantalones azules",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "17:25",
+                "id": "5"
+            },
+            {
+                "author": "yo",
+                "text": "Antes eras chévere",
+                "status": "Entregado",
+                "day": "Hoy",
+                "hour": "17:30",
+                "id": "6"
+            }
+        ]
+    },
+    {
+        "nombre": "Lisa Simpson",
+        "thumbnail": "lisa.jpg",
+        "ultima_conexion": "Hace 2 days",
+        "id": 5,
+        "mensajes": [
+            {
+                "author": "Lisa Simpson",
+                "text": "Hoy no va a llegar el fin del mundo, tan sólo 100 años más de calentamiento global y ¡Adiós!",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "19:00",
+                "id": "1"
+            },
+            {
+                "author": "yo",
+                "text": "Está bien... está bien... tranquila, no es tu culpa, fue el ave, tu no controlas a las aves... lo haras algún día, pero no ahora",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "19:05",
+                "id": "2"
+            },
+            {
+                "author": "Lisa Simpson",
+                "text": "Si alguien me necesita, estaré en mi habitacion",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "19:10",
+                "id": "3"
+            },
+            {
+                "author": "yo",
+                "text": "Seras la novia de Milhouse",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "19:15",
+                "id": "4"
+            },
+            {
+                "author": "Lisa Simpson",
+                "text": "Nunca.",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "19:10",
+                "id": "5"
+            },
+            {
+                "author": "yo",
+                "text": "Hahaaaaa...",
+                "status": "Visto",
+                "day": "Hoy",
+                "hour": "19:15",
+                "id": "6"
+            }
+        ]
+    },
+    {
+                "nombre": "Krusty el payaso",
+                "thumbnail": "krusty.jpg",
+                "ultima_conexion": "Ayer",
+                "id": 6,
+                "mensajes": [
+                    {
+                        "author": "Krusty el payaso",
+                        "text": "Y esos turistas fueron decapitados antes de entrar a la Casa de los Cuchillos de Krustylandia",
+                        "status": "Visto",
+                        "day": "Ayer",
+                        "hour": "17:45",
+                        "id": "1"
+                    },
+                    {
+                        "author": "yo",
+                        "text": "Haz perdido un televidente de Krustylandia",
+                        "status": "Visto",
+                        "day": "Ayer",
+                        "hour": "20:05",
+                        "id": "2"
+                    },
+                    {
+                        "author": "Krusty el payaso",
+                        "text": "...y creo que dije en voz alta lo que debí decir en voz baja",
+                        "status": "Visto",
+                        "day": "Hoy",
+                        "hour": "20:10",
+                        "id": "3"
+                    },
+                    {
+                        "author": "yo",
+                        "text": "Ya, ya esta bien.",
+                        "status": "Ayer",
+                        "day": "Hoy",
+                        "hour": "20:15",
+                        "id": "4"
+                    },
+                    {
+                        "author": "Krusty el payaso",
+                        "text": "No es mi culpa, es el Percodan... ¡Para mi que esa porqueria causa adicción!, ¡Bien es hora de un corte de nuestro patrocinador que....! ¡AY, ES PERCODAN, MALDITA SEA!",
+                        "status": "Visto",
+                        "day": "Ayer",
+                        "hour": "20:20",
+                        "id": "5"
+                    },
+                    {
+                        "author": "yo",
+                        "text": "PERCODAAAAAAAAAN",
+                        "status": "Visto",
+                        "day": "Ayer",
+                        "hour": "20:25",
+                        "id": "6"
+                    }
+                ]
+            },
+            {
+                        "nombre": "Moe Szyslak",
+                        "thumbnail": "moe.jpg",
+                        "ultima_conexion": "Hace 3 days",
+                        "id": 7,
+                        "mensajes": [
+                            {
+                                "author": "Moe Szyslak",
+                                "text": "Ahora en serio...¡Págame!",
+                                "status": "Visto",
+                                "day": "Hoy",
+                                "hour": "20:00",
+                                "id": "1"
+                            },
+                            {
+                                "author": "yo",
+                                "text": "Moe, sírveme algo fuerte como para olvidar que las odio, pero no tanto como para creer que las quiero",
+                                "status": "Visto",
+                                "day": "Hoy",
+                                "hour": "20:05",
+                                "id": "2"
+                            },
+                            {
+                                "author": "Moe Szyslak",
+                                "text": "No hasta que pagues lo que me debes",
+                                "status": "Visto",
+                                "day": "Hoy",
+                                "hour": "20:10",
+                                "id": "3"
+                            },
+                            {
+                                "author": "yo",
+                                "text": "Me escapare",
+                                "status": "Visto",
+                                "day": "Hoy",
+                                "hour": "20:15",
+                                "id": "4"
+                            },
+                            {
+                                "author": "Moe Szyslak",
+                                "text": "Nadie se le escapa a Moe. No ha nacido quién",
+                                "status": "Visto",
+                                "day": "Hoy",
+                                "hour": "20:20",
+                                "id": "5"
+                            },
+                            {
+                                "author": "yo",
+                                "text": "Ouch, aqui esta tu dinero",
+                                "status": "Visto",
+                                "day": "Hoy",
+                                "hour": "20:25",
+                                "id": "6"
+                            }
+                        ]
+                    }
+        ]
+    

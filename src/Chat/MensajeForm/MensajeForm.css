@@ -1,0 +1,232 @@
+/* Style formulario de mensajes */
+
+.message-form-chat {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    background-color: #31363F;
+    padding: 10px;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.input-mensaje {
+    color: #000000;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    outline: none;
+    background-color: #31363F;
+
+}
+
+.input-mensaje::placeholder {
+    color: #999999;
+}
+
+.btn-send {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #1CBB4A;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+
+}
+
+.message-form-chat .btn-send:hover {
+    background-color: #1CBB4A;
+
+}
+
+.message-form-chat .icons-input,
+.message-form-chat .icons-emoji {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+
+
+.message-form-chat .icons-input svg,
+.message-form-chat .icons-emoji svg {
+    cursor: pointer;
+}
+
+
+/* Desktop */
+@media (max-width: 2000px) {}
+
+
+@media screen and (min-width: 1020px) and (max-width: 2000px) {
+    .message-form-chat {
+        height: 70px;
+        position: fixed;
+        bottom: 0;
+        justify-content: space-between;
+
+    }
+
+    .input-mensaje {
+        width: 80%;
+        height: 30px;
+    }
+
+    .btn-send {
+        width: 30px;
+        height: 30px;
+
+    }
+
+    .icons-emoji svg {
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+    }
+
+    .icons-input svg {
+        width: 40px;
+        height: 40px;
+
+    }
+}
+
+/* 
+.message-form-chat .input-mensaje {
+    width: 75%;
+    height: 20px;
+    font-size: 12px;
+}
+
+.message-form-chat .btn-send {
+    width: 25px;
+    height: 25px;
+    left: 92%;
+}
+
+.message-form-chat .icons-emoji {
+    width: 15px;
+    height: 15px;
+}
+
+.message-form-chat .icons-input {
+    width: 15px;
+    height: 15px;
+}
+ */
+
+@media screen and (min-width: 700px) and (max-width: 1020px) {
+    .message-form-chat {
+        width: 100%;
+        height: 70px;
+        position: fixed;
+        bottom: 0;
+        justify-content: space-between;
+
+    }
+
+    .input-mensaje {
+        width: 75%;
+        height: 20px;
+        font-size: 12px;
+    }
+
+    .btn-send {
+        width: 25px;
+        height: 25px;
+        left: 92%;
+    }
+
+    .icons-emoji {
+        width: 15px;
+        height: 15px;
+    }
+
+    .icons-input {
+        display: none;
+    }
+
+}
+
+/* Mobile horizontal*/
+@media screen and (min-width: 400px) and (max-width: 700px) {
+    .message-form-chat {
+        width: 100%;
+        height: 12%;
+        position: fixed;
+        bottom: 0;
+        justify-content: space-between;
+
+    }
+
+    .message-form-chat .input-mensaje {
+        width: 75%;
+        height: 20px;
+        font-size: 12px;
+    }
+
+    .message-form-chat .btn-send {
+        width: 25px;
+        height: 25px;
+        left: 92%;
+    }
+
+    .message-form-chat .icons-emoji {
+        width: 15px;
+        height: 15px;
+    }
+
+    .message-form-chat .icons-input {
+        width: 15px;
+        height: 15px;
+    }
+
+
+}
+
+
+@media screen and (min-width: 280px) and (max-width: 400px) {
+    .message-form-chat {
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0;
+        height: 10%;
+    }
+
+    .message-form-chat .input-mensaje {
+        height: 13px;
+        width: 100%;
+        gap: 2px;
+    }
+
+    .message-form-chat .btn-send {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+
+    }
+
+    .message-form-chat .icons-emoji {
+        display: none
+    }
+
+    .message-form-chat .icons-input {
+        display: none;
+    }
+
+    .message-form-chat .input-mensaje::placeholder {
+        color: gray;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,64 @@
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 80%;
+  margin-top: 73px;
+  margin-left: 20px;
+
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+/* Media Queries */
+
+/* Desktop / TV / Laptop */
+@media (max-width: 1200px) {
+  .contact-list {
+    height: 100vh;
+    width: 100%;
+
+  }
+}
+
+
+/* Tablet */
+@media (max-width: 992px) {
+  .contact-list {
+    height: 100vh;
+    width: 100%;
+
+  }
+}
+
+/* Mobile horizontal*/
+@media (max-width: 768px) {
+  .contact-list {
+    height: 100vh;
+    width: 100%;
+    margin-top: 73px;
+  }
+}
+
+/* Phone */
+@media (max-width: 320px) {
+  .contact-list {
+    height: 100vh;
+    width: 100%;
+
+  }
+}

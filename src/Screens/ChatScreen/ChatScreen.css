@@ -1,0 +1,19 @@
+.chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #E5DDD5;
+
+}
+
+.chat-screen {
+    overflow-y: auto;
+    padding: 10px 10px;
+    background-color: #E5DDD5;
+}
+
+@media screen and (min-width:280px) and (max-width:400px) {
+    .chat {
+        width: 100·;
+    }
+}

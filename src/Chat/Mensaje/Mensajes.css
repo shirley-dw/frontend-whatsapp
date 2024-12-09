@@ -1,0 +1,136 @@
+/* Mensajes.css */
+.messages-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  margin: 20px;
+}
+
+.mensaje {
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.mensaje .content {
+  padding: 10px 200px;
+  border-radius: 20px;
+  max-width: 60%;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mensaje.recieved .content {
+  background-color: #FFFFFF;
+  align-self: flex-start;
+}
+
+.mensaje.sent .content {
+  background-color: #DCF8C6;
+  align-self: flex-end;
+}
+
+.mensaje .time {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+  align-self: flex-end;
+}
+
+.texto {
+  margin: 0;
+  color: rgb(89, 89, 89);
+}
+
+.content-lower {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8em;
+  color: #999;
+}
+
+.timeSince {
+  font-size: 0.8em;
+  color: #999;
+}
+
+.status-icon {
+  font-size: 1em;
+  margin-left: 5px;
+}
+
+.status-icon-gray {
+  color: gray;
+}
+
+.status-icon-blue {
+  color: rgb(71, 211, 155);
+}
+
+
+/* Media Queries */
+@media screen and (min-width: 720px) and (max-width: 1020px) {
+  .content-lower {
+    font-size: 10px;
+  }
+
+  .content {
+    margin: 10px 0;
+  }
+
+  .mensaje {
+    width: 30%;
+    padding: 5px;
+    margin: 0 1px;
+  }
+
+  .texto {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 720px) {
+  .content-lower {
+    font-size: 10px;
+  }
+
+  .content {
+    margin: 10px 0;
+  }
+
+  .mensaje {
+    width: 40%;
+    padding: 5px;
+    margin: 0 1px;
+  }
+
+  .texto {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 280px) and (max-width:400px) {
+  .content-lower {
+    font-size: 10px;
+  }
+
+  .content {
+    margin: 10px 0;
+  }
+
+  .mensaje {
+    width: 60%;
+    padding: 5px;
+    margin: 0 1px;
+  }
+
+  .texto {
+    font-size: 13px;
+  }
+}
