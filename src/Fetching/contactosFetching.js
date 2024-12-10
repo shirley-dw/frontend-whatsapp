@@ -1,6 +1,6 @@
 export const ObtenerContactos = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/auth/contacts", {
+    const response = await fetch(import.meta.env.VITE_API_URL + "/api/auth/contacts", {
       method: "GET",
     });
 
@@ -19,7 +19,7 @@ export const ObtenerContactos = async () => {
 export const ObtenerContactosById = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/auth/contacts/${id}`,
+      import.meta.env.VITE_API_URL + "/api/auth/contacts/" + id,
       { method: "GET" }
     );
 
@@ -37,7 +37,7 @@ export const ObtenerContactosById = async (id) => {
 export const ObtenerContactosByUserId = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/auth/contacts/user/${id}`,
+      import.meta.env.VITE_API_URL + "/api/auth/contacts/user/" + id,
       { method: "GET" }
     );
 
@@ -45,7 +45,7 @@ export const ObtenerContactosByUserId = async (id) => {
       throw new Error("Error al obtener los contactos del usuario");
     }
     const data = await response.json();
-    return data; // Accedo a 'data.contacts' dentro de 'Setdata'
+    return data
   } catch (error) {
     console.error("Error al obtener los contactos del usuario:", error);
     throw error;
@@ -64,7 +64,8 @@ export const CreateContactForUser = async (data, userId) => {
       throw new Error('Token de acceso inválido');
     }
 
-    const response = await fetch(`http://localhost:3000/api/auth/contacts/user/${userId}`, {
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + "/api/auth/contacts/user/" + userId, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +90,7 @@ export const CreateContactForUser = async (data, userId) => {
 export const actualizarContacto = async (id, updatedData) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/auth/contacts/${id}`,
+      import.meta.env.VITE_API_URL + "/api/auth/contacts/" + id,
       {
         method: "PUT",
         headers: {
@@ -115,7 +116,7 @@ export const actualizarContacto = async (id, updatedData) => {
 export const eliminarContacto = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/auth/contacts/${id}`,
+      import.meta.env.VITE_API_URL + "/api/auth/contacts/" + id,
       {
         method: "DELETE",
         headers: {

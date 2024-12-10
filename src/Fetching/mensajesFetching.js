@@ -1,9 +1,10 @@
 export const ObtenerMensajes = async () => {
   try {
     console.log("Iniciando fetch a la API de mensajes");
-    const response = await fetch(`http://localhost:3000/api/auth/messages`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + "/api/auth/messages",
+      { method: "GET" }
+    );
     // Verifica si la respuesta es correcta
     if (!response.ok) {
       throw new Error(`Error al obtener los mensajes: ${response.statusText}`);
@@ -26,7 +27,7 @@ export const ObtenerMensajes = async () => {
 export const ObtenerMensajesById = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/auth/messages/${id}`,
+      import.meta.env.VITE_API_URL + "/api/auth/messages/" + id,
       { method: "GET" }
     );
     if (!response.ok) {
@@ -42,7 +43,8 @@ export const ObtenerMensajesById = async (id) => {
 
 export const CrearMensajes = async (data) => {
   try {
-    const response = await fetch("http://localhost:3000/api/auth/messages", {
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + "/api/auth/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

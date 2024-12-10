@@ -13,10 +13,13 @@ const VerifyEmail = () => {
     }, []);
     const verifyEmail = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/auth/verify-email/${validation_token}`, {
-                method: 'GET'
-            });
-            console.log(response);
+            const response = await fetch(
+                import.meta.env.VITE_API_URL + `/api/auth/verify-email/${validation_token}`,
+                {
+                    method: 'GET'
+                }
+            );
+
 
             if (response.ok) {
 

@@ -1,8 +1,9 @@
 export const ObtenerUsuarioById = async (id) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/auth/user/${id}`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + '/api/auth/user/' + id,
+      { method: "GET" }
+    );
 
     if (!response.ok) {
       throw new Error("Error al obtener el usuario");
@@ -18,7 +19,7 @@ export const ObtenerUsuarioById = async (id) => {
 
 export const logoutUser = async (userId) => {
   try {
-    const response = await fetch('http://localhost:3000/api/auth/logout', {
+    const response = await fetch(import.meta.env.VITE_API_URL + '/api/auth/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

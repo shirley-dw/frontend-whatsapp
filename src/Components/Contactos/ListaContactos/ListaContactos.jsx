@@ -27,7 +27,7 @@ const ListaContactos = ({ search }) => {
                 throw new Error('El token de acceso no contiene un ID de usuario válido');
             }
 
-            const userId = parsedItem.userId; // Utiliza `userId` en lugar de `id`
+            const userId = parsedItem.userId;
             console.log('ID del usuario:', userId);
 
             const contactosFetch = await ObtenerContactosByUserId(userId);

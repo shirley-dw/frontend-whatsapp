@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import './RecoveryPassword.css'; 
+import './RecoveryPassword.css';
 import HeaderRegister from '../HeaderRegister/HeaderRegister';
 
 const RecoveryPassword = () => {
@@ -26,7 +26,8 @@ const RecoveryPassword = () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:3000/api/auth/reset-password', {
+            const response = await fetch(
+                import.meta.env.VITE_API_URL + '/api/auth/reset-password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -83,7 +84,7 @@ const RecoveryPassword = () => {
                 <button type="submit" className="recovery-button">Restablecer contraseña</button>
                 <Link to="/login" className="register-link">Iniciar Sesión</Link>
             </form>
-            
+
         </div>
     );
 };

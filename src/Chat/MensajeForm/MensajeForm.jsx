@@ -47,7 +47,8 @@ const MensajeForm = ({ setMensajes }) => {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/auth/messages', {
+            const response = await fetch(
+                import.meta.env.VITE_API_URL + "/api/auth/messages", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
