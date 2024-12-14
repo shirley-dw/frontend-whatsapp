@@ -107,3 +107,33 @@ export const ObtenerMensajesById = async () => {
 };
 
 
+export const getConversation = async (receiver_id) => {
+  const userId = sessionStorage.getItem("user_id"); // Obtén el user_id del sessionStorage
+
+  if (!userId) {
+    throw new Error("User ID no encontrado en sessionStorage");
+  }
+
+  try {
+    const response = await fetch(`/api/conversations/${receiver_id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userId}`, // Usa el userId para la autenticación
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Error al obtener la conversación");
+    }
+
+    return data.data.conversation; // Devuelve la conversación obtenida
+  } catch (error) {
+    console.error("Error al obtener la conversación:", error);
+    throw error; // Lanza el error para manejarlo en el componente que llama a esta función
+  }
+};
+
+

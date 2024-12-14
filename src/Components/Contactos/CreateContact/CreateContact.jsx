@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CreateContact.css';
-import { CrearContacto } from '../../../Fetching/contactosFetching.js';
+import { CreateContactForUser } from '../../../Fetching/contactosFetching.js';
 
 const CreateContact = ({ onContactCreated }) => {
     const [formData, setFormData] = useState({
@@ -40,7 +40,7 @@ const CreateContact = ({ onContactCreated }) => {
 
             console.log('Datos enviados al backend:', formData);
 
-            const message = await CrearContacto(formData, userId);
+            const message = await CreateContactForUser(formData, userId);
 
             setSuccessMessage(message);
             setFormData({ contact_name: '', contact_email: '', contact_phone: '', text: '' });

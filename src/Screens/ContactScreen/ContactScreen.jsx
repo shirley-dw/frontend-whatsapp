@@ -4,7 +4,7 @@ import ListaContactos from "../../Components/Contactos/ListaContactos/ListaConta
 import ContactoHeader from "../../Components/Contactos/ContactoHeader/ContactoHeader.jsx";
 import NavBar from "../../Components/NavBar/NavBar.jsx";
 import './ContactScreen.css';
-import { ObtenerContactos } from "../../Fetching/contactosFetching.js";
+import { getUserContacts } from "../../Fetching/contactosFetching.js";
 
 const ContactScreen = () => {
     const [search, setSearch] = useState('');
@@ -13,7 +13,7 @@ const ContactScreen = () => {
 
     const fetchContactos = async () => {
         try {
-            const fetchedContactos = await ObtenerContactos();
+            const fetchedContactos = await getUserContacts();
             setContactos(fetchedContactos);
         } catch (error) {
             console.error('Error al obtener los contactos:', error);

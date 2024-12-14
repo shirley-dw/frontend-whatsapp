@@ -22,14 +22,14 @@ const NavBar = () => {
                     throw new Error('Token de acceso no encontrado');
                 }
 
-                const parsedItem = JSON.parse(sessionItem);
-                const userId = parsedItem.userId;
+                // El token no es un JSON, así que no lo parseamos
+                const user_id = ObtenerInformacionUser(sessionItem); // Necesitas una función que extraiga el user_id del token
 
-                if (!userId) {
+                if (!user_id) {
                     throw new Error('ID de usuario no encontrado en el token');
                 }
 
-                const userInfo = await ObtenerInformacionUser(userId);
+                const userInfo = await ObtenerInformacionUser(user_id);
                 setUser(userInfo);
             } catch (error) {
                 console.error('Error al obtener la información del usuario:', error);
@@ -38,6 +38,7 @@ const NavBar = () => {
                 setLoading(false); // Cambio el estado de carga cuando la llamada termina
             }
         };
+
 
         fetchUser();
     }, []);

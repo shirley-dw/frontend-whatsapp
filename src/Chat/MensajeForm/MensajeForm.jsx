@@ -5,10 +5,10 @@ import { MdAttachFile, MdSend } from "react-icons/md";
 import { useParams } from 'react-router-dom';
 import './MensajeForm.css';
 
-const MensajeForm = ({ setMensajes }) => {
+const MensajeForm = ({ setMessages }) => {
     const [message, setMessage] = useState('');
     const param = useParams();
-    const destinatarioId = param.id;
+    const receiver_id = param.id;
 
     const sessionItem = sessionStorage.getItem('access-token');
     const itemParse = JSON.parse(sessionItem);
@@ -17,8 +17,8 @@ const MensajeForm = ({ setMensajes }) => {
         e.preventDefault();
 
         const msjNuevo = {
-            author: itemParse.userId,
-            receiver_id: destinatarioId,
+            author: itemParse.user_id,
+            receiver_id: receiver_id,
             content: message,
             status: 'visto',
             day: new Date().toLocaleDateString(),

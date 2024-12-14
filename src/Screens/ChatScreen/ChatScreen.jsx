@@ -8,9 +8,10 @@ import './ChatScreen.css';
 const ChatScreen = () => {
     const { id } = useParams();
     const location = useLocation();
-    const [mensajes, setMensajes] = useState([]);
+    const [messages, setMessages] = useState([]);
 
     console.log('Contact ID:', id);
+    console.log(messages)
     console.log('Location state:', location.state);
 
     return (
@@ -19,7 +20,7 @@ const ChatScreen = () => {
             <div className='chat-screen'>
                 <ListaMensajes contact_id={id} />
             </div>
-            <MensajeForm mensajes={mensajes} setMensajes={setMensajes} contact_id={id} />
+            <MensajeForm messages={messages} setMessages={setMessages} contact_id={id} />
         </div>
     );
 };

@@ -1,7 +1,7 @@
-export const ObtenerInformacionUser = async (id) => {
+export const ObtenerInformacionUser = async (user_id) => {
     try {
         const response = await fetch(
-            import.meta.env.VITE_API_URL + "/api/auth/user/" + id,
+            import.meta.env.VITE_API_URL + "/api/auth/user/" + user_id,
             { method: "GET" }
         );
         if (!response.ok) {

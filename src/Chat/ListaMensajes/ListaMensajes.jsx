@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ObtenerMensajes } from "../../Fetching/mensajesFetching";
+import { getConversation } from "../../Fetching/mensajesFetching.js";
 import Mensajes from '../Mensaje/Mensajes';
 import './ListaMensajes.css';
 
 const ListaMensajes = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { id: receiver_id } = useParams(); // Obtener receiver_id desde useParams
-
-  const loguedUserId = JSON.parse(sessionStorage.getItem('access-token')).userId;
+  const { receiver_id } = useParams(); // Obtener receiver_id desde useParams
 
   const fetchMensajes = async () => {
     try {
-      const msgs = await ObtenerMensajes(receiver_id);
+      const msgs = await getConversation(receiver_id);
 
       if (!msgs || !Array.isArray(msgs)) {
         throw new Error("Los mensajes obtenidos son undefined o no son un array");

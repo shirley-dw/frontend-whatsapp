@@ -1,4 +1,4 @@
-import { useState, } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useForm from '../../../hooks/useForm';
 import HeaderRegister from '../HeaderRegister/HeaderRegister';
@@ -48,7 +48,12 @@ const Login = () => {
                 }
             } else {
                 console.log('Inicio de sesión exitoso');
-                sessionStorage.setItem('access-token', JSON.stringify({ token: data.data.token, userId: data.data.userId }));  // Agrego manejo de sessionStorage 
+                // Guardar el token y el userId en sessionStorage
+                sessionStorage.setItem('access-token', data.data.token); // Guarda solo el token
+                sessionStorage.setItem('user-id', data.data.userId); // Guarda solo el userId
+                // Opción alternativa: Si prefieres guardar ambos en un objeto
+                // sessionStorage.setItem('access-token', JSON.stringify({ token: data.data.token, userId: data.data.userId }));
+
                 navigate('/inicio'); // Redirige a ContactScreen después del inicio de sesión exitoso
             }
         } catch (error) {

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import { actualizarContacto, eliminarContacto } from "../../../Fetching/contactosFetching.js";
+import { actualizarContacto, deleteContact } from "../../../Fetching/contactosFetching.js";
 import "./Contacto.css";
 
-const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, text = "Sin mensajes", hour = "", onSelect, onDelete }) => {
+const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, content = "Sin mensajes", hour = "", onSelect, onDelete }) => {
     const defaultImage = '/imagenes/user.png'; // Ruta de la imagen por defecto
     const imagenes = thumbnail && thumbnail.startsWith("http") ? thumbnail : (thumbnail ? `/imagenes/${thumbnail}` : defaultImage);
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -46,10 +46,10 @@ const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, text 
     };
 
     // Maneja la eliminación del contacto
-    const handleEliminarContacto = async (e) => {
+    const handledeleteContact = async (e) => {
         e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
         try {
-            await eliminarContacto(contact_id);
+            await deleteContact(contact_id);
             console.log("Contacto eliminado correctamente");
             if (onDelete) onDelete(contact_id); // Notifica al componente padre
             closeModal();
@@ -77,7 +77,7 @@ const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, text 
                 <img src={imagenes} alt={name} className="img-profile" />
                 <div className="dato-card">
                     <p className="name-card">{name}</p>
-                    <div className="ultimo-mensaje">{text}</div>
+                    <div className="ultimo-mensaje">{content}</div>
                     <div className="status-card">{status}</div>
                 </div>
                 <div className="time-card">{hour}</div>
@@ -115,7 +115,7 @@ const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, text 
                     <button onClick={handleActualizarContacto} className="btn-update">
                         Actualizar Contacto
                     </button>
-                    <button onClick={handleEliminarContacto} className="btn-delete">
+                    <button onClick={handledeleteContact} className="btn-delete">
                         Eliminar Contacto
                     </button>
                     <button onClick={(e) => { e.stopPropagation(); closeModal(); }} className="btn-cancel">

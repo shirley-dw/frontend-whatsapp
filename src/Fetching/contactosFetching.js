@@ -1,4 +1,4 @@
-export const CrearContacto = async (formData, userId) => {
+export const CreateContactForUser = async (formData, user_id) => {
   try {
     const sessionItem = sessionStorage.getItem("access-token");
     if (!sessionItem) {
@@ -12,7 +12,7 @@ export const CrearContacto = async (formData, userId) => {
     console.log("Datos enviados al servidor:", formData);
 
     const response = await fetch(
-      import.meta.env.VITE_API_URL + `/api/contacts/add`,
+      import.meta.env.VITE_API_URL + `/api/contacts/add/` + user_id,
       {
         method: "POST",
         headers: {
@@ -33,7 +33,46 @@ export const CrearContacto = async (formData, userId) => {
   }
 };
 
+export const getUserContacts = async () => {
+  try {
+    const sessionItem = sessionStorage.getItem("access-token");
+    if (!sessionItem) {
+      throw new Error('No se encontró el token de acceso en sessionStorage');
+    }
 
+    const parsedItem = JSON.parse(sessionItem);
+    if (!parsedItem.token) {
+      throw new Error('Token de acceso inválido');
+    }
+
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + "/api/contacts/userContacts",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${parsedItem.token}`,
+        },
+      }
+    );
+    console.log("Respuesta de la API:", response);
+
+    if (!response.ok) {
+      throw new Error(`Error al obtener los contactos: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    if (!data || !Array.isArray(data.data.contacts)) {
+      throw new Error("Los datos obtenidos no son un array de contactos");
+    }
+
+    return data.data.contacts;
+  } catch (error) {
+    console.error("Error al obtener los contactos:", error);
+    throw error;
+  }
+};
 
 export const ObtenerContactos = async () => {
   try {
@@ -146,33 +185,38 @@ export const actualizarContacto = async (id, data) => {
 };
 
 // Ejemplo para eliminar un contacto
-export const eliminarContacto = async (id) => {
+export const deleteContact = async (user_id, contact_id) => {
   try {
     const sessionItem = sessionStorage.getItem("access-token");
     if (!sessionItem) {
-      throw new Error('No se encontró el token de acceso en sessionStorage');
+      throw new Error("No se encontró el token de acceso en sessionStorage");
     }
 
     const parsedItem = JSON.parse(sessionItem);
     if (!parsedItem.token) {
-      throw new Error('Token de acceso inválido');
+      throw new Error("Token de acceso inválido");
     }
+
     const response = await fetch(
-      import.meta.env.VITE_API_URL + `/api/contacts/contacts/${id}`, {
-      method: 'DELETE', // Método de eliminación
-      headers: {
-        Authorization: `Bearer ${parsedItem.token}`,
-      },
-    });
+      `${import.meta.env.VITE_API_URL}/api/contacts/delete/${user_id}/${contact_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${parsedItem.token}`,
+        },
+      }
+    );
 
     if (!response.ok) {
-      throw new Error('Error al eliminar el contacto');
+      throw new Error(`Error al eliminar el contacto: ${response.statusText}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    return data; // Devuelve la respuesta del servidor
   } catch (error) {
-    console.error(error);
-    throw new Error('Error al eliminar el contacto');
+    console.error("Error al eliminar el contacto:", error);
+    throw error;
   }
 };
 

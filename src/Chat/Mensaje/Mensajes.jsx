@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Mensajes.css";
 import { BsCheck, BsCheckAll } from "react-icons/bs";
 
-const Mensajes = ({ message, isRecievedMessage }) => {
+const Mensajes = ({ message, }) => {
   useEffect(() => { }, []);
 
   const renderStatusIcon = (status) => {
@@ -22,7 +22,7 @@ const Mensajes = ({ message, isRecievedMessage }) => {
     <div className="messages-container">
       <div className="content" style={{ justifyContent: isRecievedMessage ? "flex-end" : "flex-start" }}>
         <div className="mensaje" style={{ backgroundColor: isRecievedMessage ? "#D9FDD3" : "#FFFFFF" }}>
-          <p className="texto">{message?.text || "Sin contenido"}</p>
+          <p className="texto">{message?.content || "Sin contenido"}</p>
           <div className="content-lower">
             <span className="timeSince">{message?.hour || "00:00"}</span>
             {renderStatusIcon(message?.status)}

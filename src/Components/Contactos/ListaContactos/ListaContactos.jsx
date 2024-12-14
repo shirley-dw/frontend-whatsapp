@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ContactoCard from '../Contacto/ContactoCard.jsx';
-import { ObtenerContactos } from '../../../Fetching/contactosFetching';
+import { getUserContacts } from '../../../Fetching/contactosFetching';
 import './ListaContactos.css';
 
 const ListaContactos = ({ search }) => {
@@ -21,29 +21,17 @@ const ListaContactos = ({ search }) => {
                 throw new Error('No se encontró el token de acceso en sessionStorage');
             }
 
-            let parsedItem;
-            try {
-                parsedItem = JSON.parse(sessionItem);
-            } catch (error) {
-                throw new Error('Error al parsear el token de acceso');
-            }
+            // El token JWT es una cadena, no necesitas parsearlo
+            const token = sessionItem;
+            console.log('Token JWT:', token);
 
-            console.log('Valor de parsedItem:', parsedItem);
-
-            if (!parsedItem.userId) {
-                throw new Error('El token de acceso no contiene un ID de usuario válido');
-            }
-
-            const userId = parsedItem.userId;
-            console.log('ID del usuario:', userId);
-
-            // Obtener contactos por ID de usuario
-            const contactosFetch = await ObtenerContactos(userId);
+            // Obtener contactos utilizando el token directamente
+            const contactosFetch = await getUserContacts();
             console.log('Contactos obtenidos:', contactosFetch);
 
-            // Verificar si la respuesta contiene la propiedad 'contacts' y es un array
-            if (contactosFetch && Array.isArray(contactosFetch.contacts)) {
-                setContactos(contactosFetch.contacts);
+            // Validar que la respuesta es un array
+            if (Array.isArray(contactosFetch)) {
+                setContactos(contactosFetch);
             } else {
                 throw new Error('La respuesta no contiene contactos válidos');
             }
