@@ -10,24 +10,21 @@ const VerifyEmail = () => {
 
     useEffect(() => {
         verifyEmail();
-    }, []);
+    }, []); // Solo se ejecuta una vez
+
     const verifyEmail = async () => {
         try {
             const response = await fetch(
-                import.meta.env.VITE_API_URL + `/api/auth/verify-email/${validation_token}`,
-                {
-                    method: 'GET'
-                }
+                `${import.meta.env.VITE_API_URL}/api/auth/verify-email/${validation_token}`,
+                { method: 'GET' }
             );
 
-
             if (response.ok) {
-
                 setMessage('¡Email verificado exitosamente!');
                 setIsVerified(true);
-
             } else {
-                setMessage('Hubo un problema al verificar tu email.');
+                const data = await response.json();
+                setMessage(data.message || 'Hubo un problema al verificar tu email.');
                 setIsVerified(false);
             }
         } catch (error) {
@@ -36,6 +33,7 @@ const VerifyEmail = () => {
             setIsVerified(false);
         }
     };
+
     return (
         <div className='verify-email-container'>
             <div className='verification-header'>
@@ -53,7 +51,6 @@ const VerifyEmail = () => {
                         <Link to="/register" className="btn-secondary">Registrarme nuevamente</Link>
                     </>
                 }
-
             </div>
         </div>
     );

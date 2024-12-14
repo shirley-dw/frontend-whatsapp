@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ContactoCard from '../Contacto/ContactoCard.jsx';
-import { ObtenerContactosByUserId } from '../../../Fetching/contactosFetching';
+import { ObtenerContactos } from '../../../Fetching/contactosFetching';
 import './ListaContactos.css';
 
 const ListaContactos = ({ search }) => {
     const [contactos, setContactos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchContactos();
@@ -20,7 +21,13 @@ const ListaContactos = ({ search }) => {
                 throw new Error('No se encontró el token de acceso en sessionStorage');
             }
 
-            const parsedItem = JSON.parse(sessionItem);
+            let parsedItem;
+            try {
+                parsedItem = JSON.parse(sessionItem);
+            } catch (error) {
+                throw new Error('Error al parsear el token de acceso');
+            }
+
             console.log('Valor de parsedItem:', parsedItem);
 
             if (!parsedItem.userId) {
@@ -30,12 +37,19 @@ const ListaContactos = ({ search }) => {
             const userId = parsedItem.userId;
             console.log('ID del usuario:', userId);
 
-            const contactosFetch = await ObtenerContactosByUserId(userId);
+            // Obtener contactos por ID de usuario
+            const contactosFetch = await ObtenerContactos(userId);
             console.log('Contactos obtenidos:', contactosFetch);
 
-            setContactos(contactosFetch);
+            // Verificar si la respuesta contiene la propiedad 'contacts' y es un array
+            if (contactosFetch && Array.isArray(contactosFetch.contacts)) {
+                setContactos(contactosFetch.contacts);
+            } else {
+                throw new Error('La respuesta no contiene contactos válidos');
+            }
         } catch (error) {
             console.error('Error al obtener los contactos:', error);
+            setError('Hubo un error al cargar los contactos.');
         } finally {
             setLoading(false);
         }
@@ -44,11 +58,15 @@ const ListaContactos = ({ search }) => {
     return (
         <div>
             {loading && <div>Cargando...</div>}
-            {contactos && contactos.map(contacto => (
+            {error && <div>{error}</div>}
+            {!loading && contactos.length === 0 && <div>No hay contactos disponibles</div>}
+            {!loading && contactos && contactos.map(contacto => (
                 <ContactoCard
                     key={contacto._id}
-                    id={contacto._id}
+                    contact_id={contacto._id}
                     name={contacto.name}
+                    email={contacto.email}
+                    phone={contacto.phone}
                     thumbnail={contacto.thumbnail}
                     status={contacto.status}
                     text={contacto.text}

@@ -7,21 +7,33 @@ import { useEffect, useState } from "react";
 
 const ChatHeaderInfo = () => {
   const { id } = useParams();
-  const { state } = useLocation();
-
+  const { state } = useLocation();  // Obtener los datos pasados en el state
   const [contacto, setContacto] = useState(null);
   const [loading, setLoading] = useState(true);
-  const defaultImage = '/imagenes/user.png'; // Ruta de la imagen por defecto
+
+  // Ruta de la imagen por defecto
+  const defaultImage = '/imagenes/user.png';
+
+  // Verificar si los datos vienen de state o por la API
   const imagenes = state && state.thumbnail && state.thumbnail.startsWith("http")
     ? state.thumbnail
     : (state && state.thumbnail ? `/imagenes/${state.thumbnail}` : defaultImage);
 
+  // Obtener datos de contacto desde la API si no vienen desde state
   useEffect(() => {
-    ObtenerContactosById(id).then((contacto) => {
-      setContacto(contacto);
+    if (!state) {  // Si no hay state, realizar la petición para obtener datos de contacto
+      ObtenerContactosById(id).then((contacto) => {
+        setContacto(contacto);
+        setLoading(false);
+      }).catch((error) => {
+        console.error("Error obteniendo los contactos:", error);
+        setLoading(false);
+      });
+    } else {
+      setContacto(state); // Si viene desde state, setearlo directamente
       setLoading(false);
-    });
-  }, [id]);
+    }
+  }, [id, state]); // Usamos state como dependencia también para cuando cambie
 
   if (loading) {
     return <div>Cargando...</div>;
@@ -33,12 +45,12 @@ const ChatHeaderInfo = () => {
         <Link to={"/inicio"}>
           <SlArrowLeft className="arrow-header" />
         </Link>
-        {state && (
+        {contacto && (
           <>
             <img className="profile-pic" src={imagenes} alt="Foto perfil" />
             <div className="chat-header">
-              <div className="profile-name-header">{state.name}</div>
-              <div className="status-text-header">{state.status}</div>
+              <div className="profile-name-header">{contacto.name}</div>
+              <div className="status-text-header">{contacto.status}</div>
             </div>
           </>
         )}

@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background-color: #3d4045;
     color: white;
     padding: 20px 10px;
     height: 100vh;
-    width: 50px;
+    width: 50%;
 
     position: fixed;
     top: 0;
@@ -16,10 +16,10 @@
 }
 
 .profile-picture {
-    width: 35px;
+    width: 50px;
     height: 35px;
     border-radius: 50%;
-    border: 3px solid #1CBB4A;
+    border: 3px solid #bb1c1c;
     cursor: pointer;
 }
 

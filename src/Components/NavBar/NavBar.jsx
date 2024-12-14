@@ -1,27 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaUserCircle, FaSignOutAlt, FaCog } from 'react-icons/fa';
+import { FaSignOutAlt, FaCog } from 'react-icons/fa';
 import { BsFillChatLeftTextFill, BsTelephone } from "react-icons/bs";
 import { RiChatSmile3Line } from "react-icons/ri";
 import { LiaToolsSolid } from "react-icons/lia";
-import { ObtenerUsuarioById, logoutUser } from '../../Fetching/fetchingUser.js';
+import { ObtenerInformacionUser } from '../../Fetching/userFetching.js';
 import './NavBar.css';
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true); // Estado de carga
+    const [error, setError] = useState(null); // Manejar los errores
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const sessionItem = sessionStorage.getItem('access-token');
+                if (!sessionItem) {
+                    throw new Error('Token de acceso no encontrado');
+                }
+
                 const parsedItem = JSON.parse(sessionItem);
                 const userId = parsedItem.userId;
-                const userInfo = await ObtenerUsuarioById(userId);
+
+                if (!userId) {
+                    throw new Error('ID de usuario no encontrado en el token');
+                }
+
+                const userInfo = await ObtenerInformacionUser(userId);
                 setUser(userInfo);
             } catch (error) {
                 console.error('Error al obtener la información del usuario:', error);
+                setError('Error al cargar la información del usuario');
+            } finally {
+                setLoading(false); // Cambio el estado de carga cuando la llamada termina
             }
         };
 
@@ -32,9 +46,8 @@ const NavBar = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleLogout = async () => {
+    const handleLogout = () => {
         try {
-            await logoutUser(user._id); // Llama a la función de cierre de sesión
             sessionStorage.removeItem('access-token');
             navigate('/login'); // Redirige al login después de cerrar sesión
         } catch (error) {
@@ -44,20 +57,15 @@ const NavBar = () => {
 
     return (
         <div className="nav-bar">
-            {user && (
+            {loading && <div>Cargando...</div>}
+            {error && <div>{error}</div>}
+            <img src="./imagenes/logo.png" alt="" />
+            {user && !loading && (
                 <>
-                    <img
-                        src={user.profilePicture || './imagenes/profile.jpg'}
-                        alt={`${user.name} profile`}
-                        className="profile-picture"
-                        onClick={toggleMenu}
-                    />
-                    <div className={`user-menu ${isOpen ? 'open' : ''}`}>
+                    <div className="user-menu" style={{ display: isOpen ? 'block' : 'none' }}>
                         <div className="user-info">
-                            <img
-                                src={user.profilePicture || './imagenes/profile.jpg'}
-                                alt={`${user.name} profile`}
-                                className="profile-picture-large"
+                            <img src="./imagenes/profile.png" alt="Perfil" className="profile-picture"
+                                onClick={toggleMenu}
                             />
                             <h3 className="user-name">{user.name}</h3>
                             <p className="user-email">{user.email}</p>

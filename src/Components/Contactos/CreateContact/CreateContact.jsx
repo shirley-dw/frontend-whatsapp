@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './CreateContact.css';
-import { CreateContactForUser } from '../../../Fetching/contactosFetching.js'; // Ajusta la ruta si es necesario
-import useModal from '../../../hooks/useModal.js';
+import { CrearContacto } from '../../../Fetching/contactosFetching.js';
+
 const CreateContact = ({ onContactCreated }) => {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
+        contact_name: '',
+        contact_email: '',
+        contact_phone: '',
         text: '',
     });
 
@@ -22,16 +22,29 @@ const CreateContact = ({ onContactCreated }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Validar campos obligatorios antes de enviar
+        const newErrors = {};
+        if (!formData.contact_name) newErrors.contact_name = 'El nombre es obligatorio';
+        if (!formData.contact_email) newErrors.contact_email = 'El correo es obligatorio';
+        if (!formData.contact_phone) newErrors.contact_phone = 'El teléfono es obligatorio';
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
         try {
             const sessionItem = sessionStorage.getItem('access-token');
             const parsedItem = JSON.parse(sessionItem);
             const userId = parsedItem.userId;
 
-            const message = await CreateContactForUser(formData, userId);
+            console.log('Datos enviados al backend:', formData);
+
+            const message = await CrearContacto(formData, userId);
 
             setSuccessMessage(message);
-            setFormData({ name: '', email: '', phone: '', text: '' }); // Reiniciar formulario
-            onContactCreated && onContactCreated(); // Llama a la función de actualización después de crear el contacto
+            setFormData({ contact_name: '', contact_email: '', contact_phone: '', text: '' });
+            if (onContactCreated) onContactCreated();
         } catch (error) {
             console.error('Error al crear el contacto:', error.message);
             setErrors({ general: error.message });
@@ -40,49 +53,48 @@ const CreateContact = ({ onContactCreated }) => {
 
     return (
         <div className="create-contact">
-
             <h2>Crear nuevo contacto</h2>
-            <form onSubmit={handleSubmit} className='form-modal-create-contact'>
+            <form onSubmit={handleSubmit} className="form-modal-create-contact">
                 <div className="form-group">
-                    <label htmlFor="name">Nombre</label>
+                    <label htmlFor="contact_name">Nombre</label>
                     <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
+                        id="contact_name"
+                        name="contact_name"
+                        value={formData.contact_name}
                         onChange={handleChange}
                         placeholder="Ingresa el nombre"
                         required
                     />
-                    {errors.name && <p className="error">{errors.name.join(', ')}</p>}
+                    {errors.contact_name && <p className="error">{errors.contact_name}</p>}
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="email">Correo electrónico</label>
+                    <label htmlFor="contact_email">Correo electrónico</label>
                     <input
                         type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
+                        id="contact_email"
+                        name="contact_email"
+                        value={formData.contact_email}
                         onChange={handleChange}
                         placeholder="Ingresa el correo"
                         required
                     />
-                    {errors.email && <p className="error">{errors.email.join(', ')}</p>}
+                    {errors.contact_email && <p className="error">{errors.contact_email}</p>}
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="phone">Teléfono</label>
+                    <label htmlFor="contact_phone">Teléfono</label>
                     <input
                         type="text"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
+                        id="contact_phone"
+                        name="contact_phone"
+                        value={formData.contact_phone}
                         onChange={handleChange}
                         placeholder="Ingresa el teléfono"
                         required
                     />
-                    {errors.phone && <p className="error">{errors.phone.join(', ')}</p>}
+                    {errors.contact_phone && <p className="error">{errors.contact_phone}</p>}
                 </div>
 
                 <div className="form-group">

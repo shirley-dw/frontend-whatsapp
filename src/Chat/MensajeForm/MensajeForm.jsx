@@ -1,12 +1,8 @@
-import mongoose from 'mongoose';
 import { useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { IoCameraOutline } from "react-icons/io5";
 import { MdAttachFile, MdSend } from "react-icons/md";
 import { useParams } from 'react-router-dom';
-import { ObtenerContactosById } from '../../Fetching/contactosFetching.js';
-import { ObtenerUsuarioById } from '../../Fetching/fetchingUser.js';
-import { isValidObjectId } from '../../utils/validate.id.js';
 import './MensajeForm.css';
 
 const MensajeForm = ({ setMensajes }) => {
@@ -20,35 +16,18 @@ const MensajeForm = ({ setMensajes }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const authorId = new mongoose.Types.ObjectId(`${itemParse.userId}`);
-
-        // Validación de los IDs antes de enviar
-        if (!isValidObjectId(authorId)) {
-            console.error("El ID del autor no es válido.");
-            return;
-        }
-
-        if (!isValidObjectId(destinatarioId)) {
-            console.error("El ID del destinatario no es válido.");
-            return;
-        }
-
-        const contact = await ObtenerContactosById(destinatarioId);
-
-        const user = await ObtenerUsuarioById(contact.usuario);
-
         const msjNuevo = {
             author: itemParse.userId,
-            text: message,
+            receiver_id: destinatarioId,
+            content: message,
             status: 'visto',
             day: new Date().toLocaleDateString(),
-            hour: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            destinatario: user._id,
+            hour: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
 
         try {
             const response = await fetch(
-                import.meta.env.VITE_API_URL + "/api/auth/messages", {
+                import.meta.env.VITE_API_URL + "/api/messages/messages", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,12 +37,13 @@ const MensajeForm = ({ setMensajes }) => {
             });
 
             if (!response.ok) {
-                throw new Error('Error al guardar el mensaje');
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al guardar el mensaje');
             }
 
             const savedMessage = await response.json();
 
-            setMensajes(prevMensajes => [...prevMensajes, savedMessage]);
+            setMensajes(prevMensajes => [...prevMensajes, savedMessage.data.message]);
             setMessage(''); // Resetea el input
         } catch (error) {
             console.error("Error al enviar el mensaje:", error);

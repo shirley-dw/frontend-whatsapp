@@ -5,12 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { actualizarContacto, eliminarContacto } from "../../../Fetching/contactosFetching.js";
 import "./Contacto.css";
 
-const ContactoCard = ({ id, name, thumbnail, status, text = "Sin mensajes", hour = "", onSelect }) => {
+const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, text = "Sin mensajes", hour = "", onSelect, onDelete }) => {
     const defaultImage = '/imagenes/user.png'; // Ruta de la imagen por defecto
     const imagenes = thumbnail && thumbnail.startsWith("http") ? thumbnail : (thumbnail ? `/imagenes/${thumbnail}` : defaultImage);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [newName, setNewName] = useState(name); // Para actualizar el nombre
+    const [formData, setFormData] = useState({
+        contact_name: name,
+        contact_email: email,
+        contact_phone: phone
+    }); // Estado para actualizar el contacto
     const navigate = useNavigate();
+    console.log(contact_id);
 
     const openModal = (e) => {
         e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
@@ -19,15 +24,24 @@ const ContactoCard = ({ id, name, thumbnail, status, text = "Sin mensajes", hour
 
     const closeModal = () => setModalIsOpen(false);
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
     // Maneja la actualización del contacto
     const handleActualizarContacto = async (e) => {
-        e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
+        e.stopPropagation();
+        if (!formData.contact_name) {
+            console.error("El nombre es requerido");
+            return;
+        }
         try {
-            const updatedContact = await actualizarContacto(id, { name: newName });
-            console.log('Actualizado correctamente');
+            const updatedContact = await actualizarContacto(contact_id, formData); // Asegúrate de pasar contact_id
+            console.log("Contacto actualizado correctamente:", updatedContact);
             closeModal();
         } catch (error) {
-            console.error(error);
+            console.error("Error al actualizar el contacto:", error);
         }
     };
 
@@ -35,11 +49,12 @@ const ContactoCard = ({ id, name, thumbnail, status, text = "Sin mensajes", hour
     const handleEliminarContacto = async (e) => {
         e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
         try {
-            await eliminarContacto(id);
-            console.log('Eliminado correctamente')
+            await eliminarContacto(contact_id);
+            console.log("Contacto eliminado correctamente");
+            if (onDelete) onDelete(contact_id); // Notifica al componente padre
             closeModal();
         } catch (error) {
-            console.error(error);
+            console.error("Error al eliminar el contacto:", error);
         }
     };
 
@@ -47,27 +62,27 @@ const ContactoCard = ({ id, name, thumbnail, status, text = "Sin mensajes", hour
     const handleSelectContacto = (e) => {
         e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
         if (onSelect) {
-            onSelect(id);
+            onSelect(contact_id);
         } else {
-            navigate(`/mensaje/${id}`, { state: { id, name, thumbnail, status, text, hour } });
+            console.log(`Navigating to /mensaje/${contact_id}`);
+            navigate(`/mensaje/${contact_id}`, {
+                state: { contact_id, name, email, phone, thumbnail, status, text, hour }
+            });
         }
     };
 
     return (
         <div className="contacto" onClick={handleSelectContacto}>
-            <div key={id} className="contact-item">
+            <div key={contact_id} className="contact-item">
                 <img src={imagenes} alt={name} className="img-profile" />
                 <div className="dato-card">
-                    <p className="name-card">
-                        {name}
-                    </p>
+                    <p className="name-card">{name}</p>
                     <div className="ultimo-mensaje">{text}</div>
                     <div className="status-card">{status}</div>
                 </div>
                 <div className="time-card">{hour}</div>
             </div>
             <div className="options-container-contacto">
-
                 <BsThreeDotsVertical
                     className="options-icon-contacts"
                     onClick={openModal} // Abrir el modal sin interferir con el contenedor
@@ -85,19 +100,18 @@ const ContactoCard = ({ id, name, thumbnail, status, text = "Sin mensajes", hour
             >
                 <h2>Opciones de contacto</h2>
                 <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                    <div>
-                        <label htmlFor="newName">Cambiar nombre:</label>
+                    <div className="form-group">
+                        <label htmlFor="contact_name">Nombre:</label>
                         <input
                             type="text"
-                            id="newName"
-                            value={newName}
-                            onChange={(e) => {
-                                e.stopPropagation();
-                                setNewName(e.target.value);
-                            }}
+                            id="contact_name"
+                            name="contact_name"
+                            value={formData.contact_name}
+                            onChange={handleChange}
                             placeholder="Nuevo nombre"
                         />
                     </div>
+
                     <button onClick={handleActualizarContacto} className="btn-update">
                         Actualizar Contacto
                     </button>
