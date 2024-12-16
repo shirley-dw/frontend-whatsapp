@@ -15,7 +15,6 @@ const ListaContactos = ({ search }) => {
     const fetchContactos = async () => {
         try {
             const sessionItem = sessionStorage.getItem('access-token');
-            console.log('Valor de sessionItem:', sessionItem);
 
             if (!sessionItem) {
                 throw new Error('No se encontró el token de acceso en sessionStorage');

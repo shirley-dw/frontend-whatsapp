@@ -27,7 +27,7 @@ export const CrearMensajes = async (data) => {
 };
 
 
-export const ObtenerMensajes = async () => {
+/* export const ObtenerMensajes = async () => {
   try {
     const sessionItem = sessionStorage.getItem("access-token");
     if (!sessionItem) {
@@ -66,7 +66,7 @@ export const ObtenerMensajes = async () => {
     return [];
   }
 };
-
+ */
 
 export const ObtenerMensajesById = async () => {
   try {
@@ -107,33 +107,51 @@ export const ObtenerMensajesById = async () => {
 };
 
 
-export const getConversation = async (receiver_id) => {
-  const userId = sessionStorage.getItem("user_id"); // Obtén el user_id del sessionStorage
-
-  if (!userId) {
-    throw new Error("User ID no encontrado en sessionStorage");
-  }
-
+export const getConversation = async (user_id, receiver_id) => {
   try {
-    const response = await fetch(`/api/conversations/${receiver_id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userId}`, // Usa el userId para la autenticación
-      },
-    });
+    const sessionItem = sessionStorage.getItem("access-token");
+    console.log("Access Token en sessionStorage:", sessionItem);
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || "Error al obtener la conversación");
+    if (!sessionItem) {
+      throw new Error('No se encontró el token de acceso en sessionStorage');
     }
 
-    return data.data.conversation; // Devuelve la conversación obtenida
+
+    const parsedItem = { token: sessionItem };
+    if (!parsedItem.token) {
+      throw new Error('Token de acceso inválido');
+    }
+
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + `/api/messages/conversation/${user_id}/${receiver_id}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${parsedItem.token}`,
+        }
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Error al obtener la conversación: ' + response.statusText);
+    }
+
+    const responseBody = await response.text();
+    console.log("Raw response body:", responseBody);
+
+    try {
+      data = JSON.parse(responseBody);
+    } catch (error) {
+      throw new Error('La respuesta no es un JSON válido');
+    }
+
+    console.log("Conversación obtenida:", data);
+    return data?.data?.conversation || [];
   } catch (error) {
-    console.error("Error al obtener la conversación:", error);
-    throw error; // Lanza el error para manejarlo en el componente que llama a esta función
+    console.error("Error en fetch:", error);
+    return null;
   }
 };
+
 
 

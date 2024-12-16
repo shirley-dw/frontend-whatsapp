@@ -7,7 +7,7 @@ import { AiOutlinePicture } from "react-icons/ai";
 import { PiLockLaminatedFill } from "react-icons/pi";
 import { MdOutlinePhone, MdOutlineVideocam, MdSearch, MdLock, MdOutlineTimelapse } from "react-icons/md";
 // Importo Fetching
-import { ObtenerContactos } from '../../../Fetching/contactosFetching'
+import { ObtenerContactosById } from '../../../Fetching/contactosFetching'
 // Importo estilos
 import './ContactInfo.css'
 
@@ -16,7 +16,7 @@ const ContactInfo = () => {
     const [contacto, setContacto] = useState([]);
     // Fetching
     useEffect(() => {
-        ObtenerContactos()
+        ObtenerContactosById(id)
             .then(data => {
                 const contactoEncontrado = data.find(contacto => contacto.id === Number(id));
                 if (contactoEncontrado) {

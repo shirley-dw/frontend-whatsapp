@@ -35,12 +35,17 @@ const CreateContact = ({ onContactCreated }) => {
 
         try {
             const sessionItem = sessionStorage.getItem('access-token');
-            const parsedItem = JSON.parse(sessionItem);
-            const userId = parsedItem.userId;
+            if (!sessionItem) {
+                throw new Error('No se encontró el token de acceso en sessionStorage');
+            }
+
+            // No es necesario usar JSON.parse aquí, ya que el token es una cadena
+            const token = sessionItem; // El token es simplemente la cadena del sessionStorage
+            const userId = sessionStorage.getItem('user-id'); // Asegúrate de tener el userId en sessionStorage
 
             console.log('Datos enviados al backend:', formData);
 
-            const message = await CreateContactForUser(formData, userId);
+            const message = await CreateContactForUser(formData, userId, token);
 
             setSuccessMessage(message);
             setFormData({ contact_name: '', contact_email: '', contact_phone: '', text: '' });

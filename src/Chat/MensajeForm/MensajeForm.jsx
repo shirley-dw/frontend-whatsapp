@@ -10,14 +10,24 @@ const MensajeForm = ({ setMessages }) => {
     const param = useParams();
     const receiver_id = param.id;
 
-    const sessionItem = sessionStorage.getItem('access-token');
-    const itemParse = JSON.parse(sessionItem);
+    const sessionItem = sessionStorage.getItem("access-token");
+    if (!sessionItem) {
+        throw new Error('No se encontró el token de acceso en sessionStorage');
+    }
+
+    // Elimina JSON.parse porque el token es una cadena
+    const parsedItem = { token: sessionItem }; // Asume que el token es la cadena almacenada
+    if (!parsedItem.token) {
+        throw new Error('Token de acceso inválido');
+    }
+    console.log(sessionStorage.getItem("access-token"));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Crear el objeto con los datos del mensaje
         const msjNuevo = {
-            author: itemParse.user_id,
+            author: parsedItem.user_id, // Asegúrate de que 'user_id' esté disponible en parsedItem si lo necesitas
             receiver_id: receiver_id,
             content: message,
             status: 'visto',
@@ -31,7 +41,7 @@ const MensajeForm = ({ setMessages }) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${itemParse.token}`,
+                    'Authorization': `Bearer ${parsedItem.token}`,
                 },
                 body: JSON.stringify(msjNuevo),
             });
@@ -43,12 +53,13 @@ const MensajeForm = ({ setMessages }) => {
 
             const savedMessage = await response.json();
 
-            setMensajes(prevMensajes => [...prevMensajes, savedMessage.data.message]);
+            setMessages(prevMessages => [...prevMessages, savedMessage.data.message]);
             setMessage(''); // Resetea el input
         } catch (error) {
             console.error("Error al enviar el mensaje:", error);
         }
     };
+
 
     return (
         <form onSubmit={handleSubmit} className="message-form-chat" id="message-form">

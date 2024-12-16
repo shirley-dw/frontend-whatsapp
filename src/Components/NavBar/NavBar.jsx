@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FaSignOutAlt, FaCog } from 'react-icons/fa';
 import { BsFillChatLeftTextFill, BsTelephone } from "react-icons/bs";
 import { RiChatSmile3Line } from "react-icons/ri";
@@ -17,28 +17,32 @@ const NavBar = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const sessionItem = sessionStorage.getItem('access-token');
-                if (!sessionItem) {
-                    throw new Error('Token de acceso no encontrado');
+                setLoading(true); // Activar estado de carga
+
+                // Obtener el token de sessionStorage
+                const token = sessionStorage.getItem('access-token');
+                if (!token) {
+                    throw new Error('Token no encontrado. El usuario no está autenticado.');
                 }
 
-                // El token no es un JSON, así que no lo parseamos
-                const user_id = ObtenerInformacionUser(sessionItem); // Necesitas una función que extraiga el user_id del token
+                // Decodificar el token para extraer el user_id
+                const { user_id } = JSON.parse(atob(token.split('.')[1])); // Decodificar payload del JWT
+                console.log("user_id obtenido del token:", user_id);
 
                 if (!user_id) {
                     throw new Error('ID de usuario no encontrado en el token');
                 }
 
+                // Realizar la solicitud a la API
                 const userInfo = await ObtenerInformacionUser(user_id);
                 setUser(userInfo);
             } catch (error) {
-                console.error('Error al obtener la información del usuario:', error);
+                console.error('Error al obtener la información del usuario:', error.message);
                 setError('Error al cargar la información del usuario');
             } finally {
-                setLoading(false); // Cambio el estado de carga cuando la llamada termina
+                setLoading(false); // Desactivar estado de carga
             }
         };
-
 
         fetchUser();
     }, []);

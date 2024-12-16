@@ -2,20 +2,35 @@ import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import { actualizarContacto, deleteContact } from "../../../Fetching/contactosFetching.js";
+import { UpdateContact, DeleteContact } from "../../../Fetching/contactosFetching.js";
 import "./Contacto.css";
 
-const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, content = "Sin mensajes", hour = "", onSelect, onDelete }) => {
-    const defaultImage = '/imagenes/user.png'; // Ruta de la imagen por defecto
-    const imagenes = thumbnail && thumbnail.startsWith("http") ? thumbnail : (thumbnail ? `/imagenes/${thumbnail}` : defaultImage);
+const ContactoCard = ({
+    contact_id,
+    name,
+    email,
+    phone,
+    thumbnail,
+    status,
+    content = "Sin mensajes",
+    hour = "",
+    onSelect,
+    onDelete,
+}) => {
+    const defaultImage = "/imagenes/user.png"; // Ruta de la imagen por defecto
+    const imagenes =
+        thumbnail && thumbnail.startsWith("http")
+            ? thumbnail
+            : thumbnail
+                ? `/imagenes/${thumbnail}`
+                : defaultImage;
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [formData, setFormData] = useState({
-        contact_name: name,
-        contact_email: email,
-        contact_phone: phone
+        name, // Claves coinciden con la API
+        email,
+        phone,
     }); // Estado para actualizar el contacto
     const navigate = useNavigate();
-    console.log(contact_id);
 
     const openModal = (e) => {
         e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
@@ -30,14 +45,14 @@ const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, conte
     };
 
     // Maneja la actualización del contacto
-    const handleActualizarContacto = async (e) => {
+    const handleUpdateContact = async (e) => {
         e.stopPropagation();
-        if (!formData.contact_name) {
+        if (!formData.name) {
             console.error("El nombre es requerido");
             return;
         }
         try {
-            const updatedContact = await actualizarContacto(contact_id, formData); // Asegúrate de pasar contact_id
+            const updatedContact = await UpdateContact(contact_id, formData); // Pasa `contact_id` y `formData`
             console.log("Contacto actualizado correctamente:", updatedContact);
             closeModal();
         } catch (error) {
@@ -46,10 +61,14 @@ const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, conte
     };
 
     // Maneja la eliminación del contacto
-    const handledeleteContact = async (e) => {
-        e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
+    const handleDeleteContact = async (e) => {
+        e.stopPropagation();
+        console.log("contact_id:", contact_id);
+        const user_id = sessionStorage.getItem("user_id"); // O de otra fuente si es necesario
+        console.log("user_id:", user_id); // Agregar este log para verificar el formato
+
         try {
-            await deleteContact(contact_id);
+            await DeleteContact(user_id, contact_id); // Pasamos ambos parámetros
             console.log("Contacto eliminado correctamente");
             if (onDelete) onDelete(contact_id); // Notifica al componente padre
             closeModal();
@@ -58,15 +77,16 @@ const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, conte
         }
     };
 
+
+
     // Navegar al contacto seleccionado
     const handleSelectContacto = (e) => {
         e.stopPropagation(); // Detiene la propagación del evento al contenedor padre
         if (onSelect) {
             onSelect(contact_id);
         } else {
-            console.log(`Navigating to /mensaje/${contact_id}`);
             navigate(`/mensaje/${contact_id}`, {
-                state: { contact_id, name, email, phone, thumbnail, status, text, hour }
+                state: { contact_id, name, email, phone, thumbnail, status, content, hour },
             });
         }
     };
@@ -101,21 +121,20 @@ const ContactoCard = ({ contact_id, name, email, phone, thumbnail, status, conte
                 <h2>Opciones de contacto</h2>
                 <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                     <div className="form-group">
-                        <label htmlFor="contact_name">Nombre:</label>
+                        <label htmlFor="name">Nombre:</label>
                         <input
                             type="text"
-                            id="contact_name"
-                            name="contact_name"
-                            value={formData.contact_name}
+                            id="name"
+                            name="name"
+                            value={formData.name}
                             onChange={handleChange}
                             placeholder="Nuevo nombre"
                         />
                     </div>
-
-                    <button onClick={handleActualizarContacto} className="btn-update">
+                    <button onClick={handleUpdateContact} className="btn-update">
                         Actualizar Contacto
                     </button>
-                    <button onClick={handledeleteContact} className="btn-delete">
+                    <button onClick={handleDeleteContact} className="btn-delete">
                         Eliminar Contacto
                     </button>
                     <button onClick={(e) => { e.stopPropagation(); closeModal(); }} className="btn-cancel">

@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { getConversation } from "../../Fetching/mensajesFetching.js";
 import Mensajes from '../Mensaje/Mensajes';
 import './ListaMensajes.css';
 
-const ListaMensajes = () => {
+const ListaMensajes = ({ user_id, receiver_id }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { receiver_id } = useParams(); // Obtener receiver_id desde useParams
+  console.log({ user_id, receiver_id }); // Verifica que los valores de las props se estén pasando correctamente
 
   const fetchMensajes = async () => {
+    if (!user_id || !receiver_id) {
+      console.error('Faltan user_id o receiver_id');
+      return;  // Salir sin hacer el fetch si los ids no están definidos
+    }
     try {
-      const msgs = await getConversation(receiver_id);
+      console.log('Cargando mensajes para:', { user_id, receiver_id });
+      const msgs = await getConversation(user_id, receiver_id);
 
       if (!msgs || !Array.isArray(msgs)) {
-        throw new Error("Los mensajes obtenidos son undefined o no son un array");
+        throw new Error("Los mensajes obtenidos no son un arreglo válido");
       }
 
       setMessages(msgs);
@@ -26,14 +30,19 @@ const ListaMensajes = () => {
   };
 
   useEffect(() => {
-    if (receiver_id) {
-      fetchMensajes();
+    if (user_id && receiver_id) {
+      fetchMensajes();  // Asegúrate de que se ejecute cuando se pasen correctamente los valores
     }
-  }, [receiver_id]);
+  }, [user_id, receiver_id]); // Dependencias aseguradas
 
   if (loading) {
     return <div>Cargando...</div>;
   }
+
+  if (messages.length === 0) {
+    return <div>No hay mensajes para mostrar.</div>;
+  }
+
 
   return (
     <div className="container-msj" id="message-container">
@@ -42,7 +51,11 @@ const ListaMensajes = () => {
       ) : (
         messages.filter(message => message !== undefined).map((message) => (
           <React.Fragment key={message._id}>
-            <Mensajes mensaje={message} isRecievedMessage={loguedUserId !== message.receiver} actualizarMensajes={fetchMensajes} />
+            <Mensajes
+              mensaje={message}
+              isRecievedMessage={user_id !== message.receiver}
+              actualizarMensajes={fetchMensajes}
+            />
           </React.Fragment>
         ))
       )}

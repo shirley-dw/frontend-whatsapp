@@ -21,8 +21,7 @@ const App = () => {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/forgot-password/:reset_token" element={<RecoveryPassword />} />
             <Route path="/inicio" element={<ContactScreen />} />
-            <Route path="/mensaje/:id" element={<ChatScreen />} />
-            <Route path="/info" element={<InfoScreen />} />
+            <Route path="/mensaje/:contact_id" element={<ChatScreen />} />            <Route path="/info" element={<InfoScreen />} />
         </Routes>
     );
 }

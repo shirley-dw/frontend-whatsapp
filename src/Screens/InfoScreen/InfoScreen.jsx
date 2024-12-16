@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
  */import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineVideocam, MdOutlinePhone } from "react-icons/md";
 import NavBarInfoScreen from '../../Components/NavBarInfoScreen/NavBarInfoScreen';
-import { ObtenerContactos } from '../../Fetching/contactosFetching';
+import { ObtenerContactosById } from '../../Fetching/contactosFetching';
 import './InfoScreen.css';
 
 const InfoScreen = () => {
@@ -16,7 +16,7 @@ const InfoScreen = () => {
   useEffect(() => {
     const fetchContacto = async () => {
       try {
-        const contactosFetch = await ObtenerContactos();
+        const contactosFetch = await ObtenerContactosById(id);
         const contacto = contactosFetch.find(c => c.id === id);
         setContacto(contacto);
       } catch (error) {
