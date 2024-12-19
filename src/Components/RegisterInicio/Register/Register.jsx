@@ -78,7 +78,7 @@ const Register = () => {
                     <IndicationRegister />
                 </div>
                 <form onSubmit={handleRegister} className='register-form'>
-                    <h1 className='register-title'>Registrate en WhatsApp Web</h1>
+                    <h1 className='register-title'>Registrate en WhatsApp</h1>
                     <div className='form-group-register'>
                         <label className='register-label' htmlFor='name'>Ingresa tu nombre:</label>
                         <input

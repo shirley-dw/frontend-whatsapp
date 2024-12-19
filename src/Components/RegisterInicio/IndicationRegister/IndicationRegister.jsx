@@ -4,7 +4,7 @@ import './IndicationRegister.css';
 const IndicationRegister = () => {
   return (
     <div className='indication-register'>
-      <h1 className='indication-title-register'>Sumate a nuestra comunidad</h1>
+      <h1 className='indication-title-register'>Sumate a la comunidad</h1>
       <span className='indication-subtitle-register'>
         Envía mensajes privados a través de WhatsApp en tu navegador.
       </span>

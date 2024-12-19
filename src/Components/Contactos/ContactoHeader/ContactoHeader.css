@@ -157,11 +157,16 @@
   .logo-whatsapp {
     font-size: 25px;
   }
+
+  .contact-header .btn-agendar {
+    margin-right: 30px;
+  }
+
 }
 
 @media screen and (min-width:800px) and (max-width:900px) {
   .contact-header {
-    width: 90%;
+    width: 100%;
     height: 70px;
     justify-content: space-around;
   }
