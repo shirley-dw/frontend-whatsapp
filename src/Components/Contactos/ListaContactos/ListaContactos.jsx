@@ -28,7 +28,6 @@ const ListaContactos = () => {
         }
     };
 
-    // Elimina un contacto de la lista local
     const handleDelete = (contact_id) => {
         setContactos((prevContactos) =>
             prevContactos.filter((contacto) => contacto._id !== contact_id)
@@ -53,7 +52,7 @@ const ListaContactos = () => {
                         status={contacto.status}
                         content={contacto.text}
                         hour={contacto.hour}
-                        onDelete={handleDelete} // Permite actualizar la lista al eliminar un contacto
+                        onDelete={handleDelete} 
                     />
                 ))}
         </div>
