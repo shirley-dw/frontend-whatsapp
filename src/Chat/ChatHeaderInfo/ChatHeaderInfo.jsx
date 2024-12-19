@@ -56,9 +56,7 @@ const ChatHeaderInfo = () => {
         )}
       </div>
       <div className="icons">
-        <Link to={`/info`}>
-          <IoInformationCircle className="icons" />
-        </Link>
+        <IoInformationCircle className="icons" />
       </div>
     </div>
   );

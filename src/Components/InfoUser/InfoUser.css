@@ -1,0 +1,98 @@
+.info-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profile-container {
+    position: relative;
+    width: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: -20px;
+}
+
+
+
+.info-user-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgb(28, 187, 74);
+    cursor: pointer;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+}
+
+.toggle-menu {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    z-index: 10;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-user-profile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.user-email {
+    font-size: 14px;
+    color: #666;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background: #e04444;
+}
+
+.logout-icon {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+@media screen and (min-width: 280px) and (max-width: 400px) {
+    .info-user-container {
+        margin-top: 10px;
+    }
+
+    .info-user-profile {
+        width: 30px;
+        height: 30px;
+    }
+}

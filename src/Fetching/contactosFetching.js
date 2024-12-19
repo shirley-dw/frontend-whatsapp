@@ -68,7 +68,7 @@ export const getUserContacts = async () => {
   }
 };
 
-//Obtener contactos por ID
+// Obtener contacto por su id
 export const ObtenerContactosById = async (contact_id) => {
   try {
     const sessionItem = sessionStorage.getItem("access-token");
@@ -80,6 +80,9 @@ export const ObtenerContactosById = async (contact_id) => {
     if (!parsedItem.token) {
       throw new Error('Token de acceso inválido');
     }
+
+    console.log('Token de acceso:', parsedItem.token); // Log del token
+
     const response = await fetch(
       import.meta.env.VITE_API_URL + "/api/contacts/contacts/" + contact_id,
       {
@@ -90,18 +93,25 @@ export const ObtenerContactosById = async (contact_id) => {
       }
     );
 
+    console.log('Respuesta del servidor:', response); // Log de la respuesta completa
+
+    // Verificamos que la respuesta es válida antes de intentar parsearla
     if (!response.ok) {
-      throw new Error("Error al obtener los contactos");
+      const errorMessage = await response.text(); // Obtén el texto si no es JSON
+      console.error('Error en la respuesta:', errorMessage); // Log de error de respuesta
+      throw new Error(`Error al obtener los contactos: ${errorMessage}`);
     }
 
+    // Asegúrate de que la respuesta sea JSON
     const data = await response.json();
-    return data.contacts;
+    console.log('Datos obtenidos:', data); // Log de los datos obtenidos
+    return data.contacts; // Si la respuesta es correcta, devuelve los contactos
   } catch (error) {
     console.error("Error al obtener los contactos:", error);
-    throw error;
+    throw error; // Re-lanza el error para que pueda ser manejado en el componente
   }
-
 };
+
 
 //Actualizar contacto por ID
 export const UpdateContact = async (contact_id, data) => {
@@ -137,6 +147,7 @@ export const UpdateContact = async (contact_id, data) => {
 };
 
 
+// Eliminar contacto por id
 export const DeleteContact = async (contact_id) => {
   try {
     console.log("Iniciando DeleteContact...");
@@ -144,14 +155,15 @@ export const DeleteContact = async (contact_id) => {
 
     const sessionItem = sessionStorage.getItem("access-token");
     if (!sessionItem) {
+      console.error("Token no encontrado en sessionStorage");
       throw new Error("No se encontró el token de acceso en sessionStorage");
     }
+    console.log("Token enviado en la petición DELETE:", sessionItem);
 
     const token = sessionItem;
 
-    // Construye la URL para el DELETE
     const url = `${import.meta.env.VITE_API_URL}/api/contacts/delete/${contact_id}`;
-    console.log("URL construida para la petición DELETE:", url);
+    console.log("URL construida para DELETE:", url);
 
     // Realiza la petición
     const response = await fetch(url, {
@@ -178,6 +190,6 @@ export const DeleteContact = async (contact_id) => {
 
   } catch (error) {
     console.error("Error en DeleteContact:", error.message);
-    throw error; // Relanzar el error para que el controlador de errores superior lo maneje
+    throw error;
   }
 };

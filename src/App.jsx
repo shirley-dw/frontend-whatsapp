@@ -6,7 +6,6 @@ import ForgotPassword from './Components/RegisterInicio/ForgotPassword/ForgotPas
 import RecoveryPassword from './Components/RegisterInicio/RecoveryPassword/RecoveryPassword';
 import ContactScreen from './Screens/ContactScreen/ContactScreen';
 import ChatScreen from './Screens/ChatScreen/ChatScreen';
-import { InfoScreen } from './Screens';
 import VerifyEmail from './Components/VerifyEmail/VerifyEmail';
 
 
@@ -21,7 +20,7 @@ const App = () => {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/forgot-password/:reset_token" element={<RecoveryPassword />} />
             <Route path="/inicio" element={<ContactScreen />} />
-            <Route path="/mensaje/:contact_id" element={<ChatScreen />} />            <Route path="/info" element={<InfoScreen />} />
+            <Route path="/mensaje/:contact_id" element={<ChatScreen />} />
         </Routes>
     );
 }

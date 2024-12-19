@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-/* import { IoChevronBackSharp } from "react-icons/io5";
- */import { IoMdNotificationsOutline } from "react-icons/io";
+import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineVideocam, MdOutlinePhone } from "react-icons/md";
 import NavBarInfoScreen from '../../Components/NavBarInfoScreen/NavBarInfoScreen';
 import { ObtenerContactosById } from '../../Fetching/contactosFetching';
@@ -9,18 +8,20 @@ import './InfoScreen.css';
 
 const InfoScreen = () => {
   const { id } = useParams();
-  /*   const navigate = useNavigate(); */
   const [contacto, setContacto] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchContacto = async () => {
+      console.log(`Cargando contacto con ID: ${id}`); // Log del ID del contacto que estamos cargando
       try {
         const contactosFetch = await ObtenerContactosById(id);
+        console.log('Contactos obtenidos:', contactosFetch); // Log de los contactos obtenidos
         const contacto = contactosFetch.find(c => c.id === id);
+        console.log('Contacto encontrado:', contacto); // Log del contacto encontrado
         setContacto(contacto);
       } catch (error) {
-        console.error('Error al obtener el contacto:', error);
+        console.error('Error al obtener el contacto:', error); // Log de error
       } finally {
         setLoading(false);
       }
@@ -28,10 +29,6 @@ const InfoScreen = () => {
 
     fetchContacto();
   }, [id]);
-
-  /*  const goBack = () => {
-     navigate(-1);
-   }; */
 
   if (loading) {
     return <div>Cargando...</div>;
@@ -47,7 +44,6 @@ const InfoScreen = () => {
           <div className="info-content-div">
             <div className='info-del-contact'>
               <div className='contacto-info'>
-                {/* <IoChevronBackSharp className='back-icon' onClick={goBack} /> */}
                 <img className="profile-info" src={'/imagenes/profile.jpg'} alt="Foto perfil" />
                 <h2>{contacto.name}</h2>
                 <p>{contacto.email}</p>
@@ -88,3 +84,4 @@ const InfoScreen = () => {
 };
 
 export default InfoScreen;
+

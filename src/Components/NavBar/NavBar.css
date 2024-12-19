@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background-color: #3d4045;
     color: white;
     padding: 20px 10px;
-    height: 100vh;
+
     width: 50%;
 
     position: fixed;
@@ -16,11 +16,11 @@
 }
 
 .profile-picture {
-    width: 50px;
+    width: 40px;
     height: 35px;
-    border-radius: 50%;
-    border: 3px solid #bb1c1c;
+    border-radius: 10px;
     cursor: pointer;
+    border: 2px solid #1CBB4A;
 }
 
 .profile-picture-large {
@@ -34,21 +34,20 @@
 
 .user-menu {
     display: none;
+    /* Asegúrate de que esto no esté sobrescrito por otra regla */
     position: absolute;
-    top: 70px;
-    left: 50px;
-    background-color: #FFFFFF;
-    color: #000;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
+    top: 50px;
+    /* Ajusta según sea necesario */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .user-menu.open {
     display: block;
+    /* Asegúrate de que esta regla se esté aplicando cuando el estado isOpen sea true */
 }
 
 .user-info {
@@ -108,11 +107,57 @@
     margin-top: 20px;
 }
 
+.access-nav-icons:hover {
+    color: #1CBB4A;
+}
+
 .access-nav-icons {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
+}
+
+.user-menu-modal {
+    position: absolute;
+    top: 60px;
+    /* Ajusta según el tamaño de la imagen de perfil */
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    z-index: 1000;
+    /* Asegúrate de que el modal esté por encima de otros elementos */
+    display: none;
+    /* Asegúrate de que no se vea por defecto */
+}
+
+.user-menu-modal.open {
+    display: block;
+    /* Esto debería ser cambiado en función del estado `isOpen` */
+}
+
+
+
+/* Estilos para las opciones del menú */
+.menu-options {
+    margin-top: 10px;
+}
+
+.menu-option {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.menu-option:hover {
+    background-color: #f0f0f0;
+}
+
+.menu-icon {
+    margin-right: 8px;
 }
 
 

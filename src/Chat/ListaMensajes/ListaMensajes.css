@@ -13,19 +13,16 @@
 
 
 
-/*  Responsive MediaQuery */
 
-/* @media (max-width: 2000px) {
+@media (max-width: 2000px) {
   .container-msj {
     height: 100vh;
-    margin-top: 100px;
   }
 }
 
 @media (max-width: 1200px) {
   .container-msj {
     height: 100vh;
-    position: absolute;
     bottom: 70px;
 
 
@@ -36,25 +33,22 @@
 @media (max-width: 992px) {
   .container-msj {
     height: 100vh;
-    margin-top: 150px;
   }
 }
 
 @media (max-width: 768px) {
   .container-msj {
     height: 100vh;
-    margin-top: 80px;
   }
 }
 
 @media screen and (min-width: 321px) and (max-width: 420px) {
   .container-msj {
     height: 100vh;
-    margin-top: 130px;
   }
 
 }
- */
+
 
 
 @media screen and (min-width: 400px) and (max-width:700px) {

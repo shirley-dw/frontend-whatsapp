@@ -57,22 +57,34 @@
 
 
 
+/* Estilos del Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Estilos del Modal */
 .modal {
-  transform: translate(-50%, -50%);
+  position: relative;
+  transform: translate(0, 0);
   background: white;
   padding: 20px;
   border-radius: 10px;
   background-color: rgb(249, 249, 249);
-  width: 100%;
+  width: 50%;
+  max-width: 500px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.overlay {
-  position: fixed;
-  float: right;
-  background-color: rgba(0, 0, 0, 0.75);
-}
-
+/* Estilos de la cabecera del modal */
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -80,6 +92,7 @@
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.541);
 }
 
+/* Estilos del cuerpo del modal */
 .modal-body {
   margin-top: 10px;
   display: flex;
@@ -87,13 +100,13 @@
   gap: 15px;
 }
 
+/* Botón de cierre */
 .close-button {
   cursor: pointer;
   border: none;
   background: none;
   font-size: 20px;
   color: rgb(62, 62, 62);
-  justify-content: end;
 }
 
 .close-button:hover {
@@ -129,7 +142,7 @@
 
 @media screen and (min-width:900px) and (max-width:1200px) {
   .contact-header {
-    width: 90%;
+    width: 100%;
     gap: 250px;
     height: 70px;
     justify-content: space-around;
