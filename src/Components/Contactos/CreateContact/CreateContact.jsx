@@ -46,9 +46,9 @@ const CreateContact = ({ onContactCreated }) => {
             const message = await CreateContactForUser(formData, userId, token);
 
             setSuccessMessage(message);
-            window.location.reload();
             setFormData({ contact_name: '', contact_email: '', contact_phone: '', text: '' });
             if (onContactCreated) onContactCreated();
+            window.location.reload();
         } catch (error) {
             console.error('Error al crear el contacto:', error.message);
             setErrors({ general: error.message });
