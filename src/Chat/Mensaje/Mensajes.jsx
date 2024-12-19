@@ -19,12 +19,12 @@ const Mensajes = ({ mensaje, isRecievedMessage }) => {
   };
 
   const formatTime = (timestamp) => {
-    if (!timestamp) return "00:00"; // Si no hay hora, muestra 00:00
+    if (!timestamp) return "00:00";
 
-    const date = new Date(timestamp); // Convierte el timestamp a un objeto Date
-    const hours = date.getHours().toString().padStart(2, "0"); // Asegura que las horas tengan 2 dígitos
-    const minutes = date.getMinutes().toString().padStart(2, "0"); // Asegura que los minutos tengan 2 dígitos
-    return `${hours}:${minutes}`; // Retorna la hora en formato HH:mm
+    const date = new Date(timestamp);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
   };
 
   return (
@@ -40,7 +40,7 @@ const Mensajes = ({ mensaje, isRecievedMessage }) => {
           <p className="texto">{mensaje?.content || "Sin contenido"}</p>
           <div className="content-lower">
             <span className="timeSince">
-              {formatTime(mensaje?.created_at)} {/* Usar la hora formateada */}
+              {formatTime(mensaje?.created_at)}
             </span>
             {renderStatusIcon(mensaje?.status)}
           </div>

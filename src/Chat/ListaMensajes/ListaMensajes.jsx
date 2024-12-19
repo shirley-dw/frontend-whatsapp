@@ -22,7 +22,7 @@ const ListaMensajes = ({ user_id, receiver_id, shouldRefresh, onRefreshComplete 
       console.error("Error al obtener los mensajes:", error);
     } finally {
       setLoading(false);
-      if (onRefreshComplete) onRefreshComplete(); // Señalar que el refresh se completó
+      if (onRefreshComplete) onRefreshComplete();
     }
   };
 
@@ -37,13 +37,13 @@ const ListaMensajes = ({ user_id, receiver_id, shouldRefresh, onRefreshComplete 
       if (user_id && receiver_id) {
         fetchMensajes();
       }
-    }, 5000); // Ajusta el intervalo según lo necesario
+    }, 5000);
 
     // Limpieza: eliminar el intervalo al desmontar el componente
     return () => clearInterval(intervalId);
   }, [user_id, receiver_id]);
 
-  // Refrescar mensajes si shouldRefresh cambia
+
   useEffect(() => {
     if (shouldRefresh) {
       fetchMensajes();

@@ -25,13 +25,12 @@ const ContactoCard = ({
                 : defaultImage;
     const navigate = useNavigate();
 
-    // Maneja la eliminación del contacto
     const handleDeleteContact = async (e) => {
-        e.stopPropagation(); // Evitar que se active la navegación al contacto
+        e.stopPropagation();
         try {
-            await DeleteContact(contact_id); // Llama a la función de fetch
+            await DeleteContact(contact_id);
             console.log("Contacto eliminado correctamente");
-            if (onDelete) onDelete(contact_id); // Notifica al padre que se eliminó un contacto
+            if (onDelete) onDelete(contact_id);
         } catch (error) {
             console.error("Error al eliminar el contacto:", error.message);
         }
@@ -59,7 +58,7 @@ const ContactoCard = ({
             <div className="options-container-contacto">
                 <FaTrash
                     className="delete-icon"
-                    onClick={handleDeleteContact} // Eliminar contacto al hacer clic
+                    onClick={handleDeleteContact}
                 />
             </div>
         </div>

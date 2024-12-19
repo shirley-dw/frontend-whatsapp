@@ -16,13 +16,12 @@ const CreateContact = ({ onContactCreated }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
-        setErrors((prev) => ({ ...prev, [name]: null })); // Limpiar errores al modificar el campo
+        setErrors((prev) => ({ ...prev, [name]: null }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validar campos obligatorios antes de enviar
         const newErrors = {};
         if (!formData.contact_name) newErrors.contact_name = 'El nombre es obligatorio';
         if (!formData.contact_email) newErrors.contact_email = 'El correo es obligatorio';
@@ -39,9 +38,8 @@ const CreateContact = ({ onContactCreated }) => {
                 throw new Error('No se encontró el token de acceso en sessionStorage');
             }
 
-            // No es necesario usar JSON.parse aquí, ya que el token es una cadena
-            const token = sessionItem; // El token es simplemente la cadena del sessionStorage
-            const userId = sessionStorage.getItem('user-id'); // Asegúrate de tener el userId en sessionStorage
+            const token = sessionItem;
+            const userId = sessionStorage.getItem('user-id');
 
             console.log('Datos enviados al backend:', formData);
 

@@ -33,7 +33,7 @@ const ChatHeaderInfo = () => {
       setContacto(state); // Si viene desde state, setearlo directamente
       setLoading(false);
     }
-  }, [id, state]); // Usamos state como dependencia también para cuando cambie
+  }, [id, state]);
 
   if (loading) {
     return <div>Cargando...</div>;

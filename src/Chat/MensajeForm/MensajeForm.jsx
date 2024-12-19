@@ -39,8 +39,8 @@ const MensajeForm = ({ user_id, receiver_id, onMessageSent }) => {
             }
 
             await response.json();
-            setMessage(""); // Limpiar el input
-            if (onMessageSent) onMessageSent(); // Notificar al padre que se envió un mensaje
+            setMessage("");
+            if (onMessageSent) onMessageSent();
         } catch (error) {
             console.error("Error al enviar el mensaje:", error);
         }
