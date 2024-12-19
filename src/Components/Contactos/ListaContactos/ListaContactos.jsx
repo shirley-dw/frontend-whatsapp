@@ -17,6 +17,7 @@ const ListaContactos = () => {
             const contactosFetch = await getUserContacts();
             if (Array.isArray(contactosFetch)) {
                 setContactos(contactosFetch);
+                setTimeout(() => { window.location.reload(); }, 2000);
             } else {
                 throw new Error("La respuesta no contiene contactos válidos");
             }
@@ -52,7 +53,7 @@ const ListaContactos = () => {
                         status={contacto.status}
                         content={contacto.text}
                         hour={contacto.hour}
-                        onDelete={handleDelete} 
+                        onDelete={handleDelete}
                     />
                 ))}
         </div>
